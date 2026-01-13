@@ -162,3 +162,4 @@ ray_results/
 # Model checkpoints
 *.ckpt
 epoch=*.ckpt
+!epoch=999.ckpt
