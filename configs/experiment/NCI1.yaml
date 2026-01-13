@@ -1,0 +1,39 @@
+general:
+    name: 'NCI1'
+    gpus: 1
+    wandb: 'disabled'  # online | offline | disabled
+    resume: null            # If resume, path to ckpt file from outputs directory in main directory
+    check_val_every_n_epochs: 5
+    sample_every_val: 1
+    samples_to_generate: 1
+    samples_to_save: 1
+    chains_to_save: 1
+    final_model_samples_to_generate: 5
+    final_model_samples_to_save: 1
+    final_model_chains_to_save: 1
+    conditional: false
+
+train:
+    n_epochs: 1000
+    batch_size: 4
+    save_model: True
+
+sample:
+    sample_steps: 10
+    time_distortion: 'polydec'
+    omega: 0.05
+    eta: 50
+
+model:
+    transition: 'marginal'
+    model: 'graph_tf'
+    n_layers: 10
+    extra_features: 'rrwp'
+    rrwp_steps: 12
+    # DHFR specific dimensions - may need adjustment based on actual data
+    hidden_mlp_dims: {'X': 128, 'E': 64, 'y': 64}
+    hidden_dims: {'dx': 256, 'de': 64, 'dy': 64, 'n_head': 8, 'dim_ffX': 256, 'dim_ffE': 64, 'dim_ffy': 128}
+    lambda_train: [5, 0]
+
+dataset:
+    name: 'NCI1' 

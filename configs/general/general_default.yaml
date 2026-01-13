@@ -1,0 +1,39 @@
+# General settings
+name: 'graph-tf-model'      # Warning: 'debug' and 'test' are reserved name that have a special behavior
+
+wandb: 'disabled'             # online | offline | disabled
+gpus: 1                     # Multi-gpu is not implemented on this branch
+
+resume: null            # If resume, path to ckpt file from outputs directory in main directory
+test_only: /data1/yanjing/catflow/outputs/2025-08-05/17-54-48-AIDS-graph-tf-model/checkpoints/graph-tf-model/epoch=999.ckpt,
+           /data1/yanjing/catflow/outputs/2025-08-05/17-54-48-AIDS-graph-tf-model/checkpoints/graph-tf-model/epoch=989.ckpt,
+           /data1/yanjing/catflow/outputs/2025-08-05/17-54-48-AIDS-graph-tf-model/checkpoints/graph-tf-model/epoch=979.ckpt,
+           /data1/yanjing/catflow/outputs/2025-08-05/17-54-48-AIDS-graph-tf-model/checkpoints/graph-tf-model/epoch=969.ckpt,
+           /data1/yanjing/catflow/outputs/2025-08-05/17-54-48-AIDS-graph-tf-model/checkpoints/graph-tf-model/epoch=959.ckpt,
+           /data1/yanjing/catflow/outputs/2025-08-05/17-54-48-AIDS-graph-tf-model/checkpoints/graph-tf-model/epoch=949.ckpt,
+           /data1/yanjing/catflow/outputs/2025-08-05/17-54-48-AIDS-graph-tf-model/checkpoints/graph-tf-model/epoch=939.ckpt,
+           /data1/yanjing/catflow/outputs/2025-08-05/17-54-48-AIDS-graph-tf-model/checkpoints/graph-tf-model/epoch=929.ckpt
+           /data1/yanjing/catflow/outputs/2025-08-05/17-54-48-AIDS-graph-tf-model/checkpoints/graph-tf-model/epoch=919.ckpt
+           /data1/yanjing/catflow/outputs/2025-08-05/17-54-48-AIDS-graph-tf-model/checkpoints/graph-tf-model/epoch=909.ckpt
+check_val_every_n_epochs: 2  # How often to run validation, set to 1 for every epoch
+sample_every_val: 5
+val_check_interval: null
+samples_to_generate: 4      # We advise to set it to 2 x batch_size maximum
+samples_to_save: 4
+chains_to_save: 1
+log_every_steps: 10
+number_chain_steps: 10        # Number of frames in each gif
+
+# Test
+generated_path: null
+final_model_samples_to_generate: 2
+final_model_samples_to_save: 3
+final_model_chains_to_save: 2
+num_sample_fold: 1
+evaluate_all_checkpoints: False
+save_samples: True  # Save samples at the final test step or not, normally only used at the last epoch or during inference
+
+# Conditional Generation
+conditional: false
+target: 'k2' 
+guidance_weight: 2.0

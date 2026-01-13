@@ -1,0 +1,3 @@
+name: cox2
+datadir: data/COX2
+filter_invalid: True 

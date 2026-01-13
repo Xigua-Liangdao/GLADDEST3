@@ -1,0 +1,46 @@
+# @package _global_
+
+# EN_PR (ENZYMES + PROTEINS) mixed dataset configuration
+# 80% ENZYMES for training, 20% ENZYMES + equal amount PROTEINS for testing
+# ENZYMES = normal (0), PROTEINS = anomaly (1)
+
+general:
+    name: 'EN_PR'
+    gpus: 1
+    wandb: 'disabled'  # online | offline | disabled
+          # If resume, path to ckpt file from outputs directory in main directory
+    # IMPORTANT: override default to enable training; otherwise it will run test-only and never save checkpoints
+    check_val_every_n_epochs: 5
+    sample_every_val: 1
+    samples_to_generate: 1
+    samples_to_save: 1
+    chains_to_save: 1
+    final_model_samples_to_generate: 5
+    final_model_samples_to_save: 1
+    final_model_chains_to_save: 1
+    conditional: false
+
+train:
+    n_epochs: 100
+    batch_size: 8
+    save_model: True
+
+sample:
+    sample_steps: 10
+    time_distortion: 'polydec'
+    omega: 0.05
+    eta: 50
+
+model:
+    transition: 'marginal'
+    model: 'graph_tf'
+    n_layers: 5
+    extra_features: 'rrwp'
+    rrwp_steps: 12
+    # Adjust dimensions for EN_PR (22D node features: 18D attrs + 4D one-hot)
+    hidden_mlp_dims: {'X': 192, 'E': 64, 'y': 64}
+    hidden_dims: {'dx': 320, 'de': 64, 'dy': 64, 'n_head': 8, 'dim_ffX': 512, 'dim_ffE': 128, 'dim_ffy': 128}
+    lambda_train: [5, 0]
+
+dataset:
+    name: 'EN_PR' 

@@ -1,0 +1,4 @@
+name: Tox21_MMP
+datadir: data/Tox21_MMP
+batch_size: 4
+remove_h: false 

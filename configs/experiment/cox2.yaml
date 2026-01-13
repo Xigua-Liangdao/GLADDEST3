@@ -1,0 +1,15 @@
+# @package _global_
+defaults:
+  - override /dataset: cox2
+  - override /model: discrete
+
+general:
+  name: "cox2"
+  gpus: 1
+  seed: 0
+
+train:
+  lr: 0.0001
+  n_epochs: 1000
+  batch_size: 8
+  save_model: True 
